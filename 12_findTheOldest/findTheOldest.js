@@ -1,23 +1,14 @@
 const findTheOldest = function(people) {
-    let oldest;
-    let maxAge = 0;
-    
-    for(let i = 0; i < people.length; i++){
-        let currentAge;
-        if(Object.hasOwn(people[i], 'yearOfDeath')){
-            currentAge = people[i].yearOfDeath - people[i].yearOfBirth;
+    return people.map(current =>{
+        if(Object.hasOwn(current, 'yearOfDeath')){
+            currentAge = current.yearOfDeath - current.yearOfBirth;
         } else {
             const date = new Date();
-            currentAge = date.getFullYear() - people[i].yearOfBirth;
+            currentAge = date.getFullYear() - current.yearOfBirth;
         }
-        
-        if(currentAge > maxAge){
-            oldest = people[i];
-            maxAge = currentAge;
-        }
-    }
-    
-    return oldest;
+        return {name: current.name, age: currentAge};
+    })
+        .reduce((oldest, current) => current.age > oldest.age ? current : oldest);
 };
 
 // Do not edit below this line
