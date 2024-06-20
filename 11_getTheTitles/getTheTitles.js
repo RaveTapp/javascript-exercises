@@ -1,10 +1,5 @@
 const getTheTitles = function(books) {
-    let newArray = [];
-    
-    for(let i = 0; i < books.length; i++){
-        newArray.push(books[i].title);
-    }
-    return newArray;
+    return books.map(book => book.title);
 };
 
 // Do not edit below this line
